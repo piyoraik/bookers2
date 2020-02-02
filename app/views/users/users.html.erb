@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3">
+            <h2>User info</h2>
+            <%= attachment_image_tag current_user, :profile_image, :fill, 100,100, format: "jpeg",fallback: "no_image.jpg" %>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td><%= current_user.name %></td>
+                    </tr>
+                    <tr>
+                        <th>Introduction</th>
+                        <td><%= current_user.introduction %></td>
+                    </tr>
+                </tbody>
+            </table>
+            <% if current_user.id %>
+                <%= link_to "", edit_user_path(current_user.id),class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_11603" %>
+            <% end %>
+        </div>
+        <div class="col-xs-9">
+            <h2>Users</h2>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Introduction</th>
+                        <th colspan="4"></th>
+                    </tr>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <th><%= attachment_image_tag user, :profile_image, :fill, 60,60, format: "jpeg",fallback: "no-image-icon.jpg" %></th>
+                        <th><%= user.name %></th>
+                        <td><%= user.introduction %></td>
+                        <td><%= link_to "show", user_path(user.id) %>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  #! ログイン済ユーザーのみ、このコントローラーへのアクセスを許可
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
+  end
+
+  def users
+    @users = User.all
   end
 
   def edit
@@ -15,6 +21,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :profile_image)
+      params.require(:user).permit(:name, :profile_image, :introduction)
     end
 end

@@ -17,7 +17,7 @@
           <ul class="clearfix">
             <% if user_signed_in? %>
               <li class="list"><%= link_to "Home", user_path(current_user.id) %></li>
-              <li class="list">Users</li>
+              <li class="list"><%= link_to "Users", users_path %></li>
               <li class="list">Books</li>
               <li class="list"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             <% else %>
