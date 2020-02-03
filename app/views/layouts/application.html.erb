@@ -12,14 +12,14 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">Bookers2</h1>
+        <h1 class="nav navbar-nav navbar-left">Bookers2</h1>
         <nav>
-          <ul class="clearfix">
+          <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li class="list"><%= link_to "Home", user_path(current_user.id) %></li>
-              <li class="list"><%= link_to "Users", users_path %></li>
-              <li class="list">Books</li>
-              <li class="list"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              <li class="list"><%= link_to "Home", user_path(current_user.id),class:"glyphicon glyphicon-home home navia" %></li>
+              <li class="list"><%= link_to "Users", users_path,class:"glyphicon glyphicon-link about navia" %></li>
+              <li class="list"><%= link_to "Books", books_path,class:"glyphicon glyphicon-book books navia" %></li>
+              <li class="list"><%= link_to "Logout", destroy_user_session_path, method: :delete,class:"glyphicon glyphicon-edit log_out navia" %></li>
             <% else %>
               <li class="list"><%= link_to "home", root_path %></li>
               <li class="list">About</li>

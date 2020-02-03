@@ -22,12 +22,6 @@
      box-sizing: border-box;
  }
 
- .clearfix::after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
 header {
     height: 70px;
     background-color: black;
@@ -39,14 +33,21 @@ header {
     line-height: 70px;
 }
 
-nav {
-    float: right;
-}
-
 .list {
     color: white;
     list-style: none;
     display: inline-block;
     line-height: 70px;
     padding: 0 30px;
+}
+
+.navia {
+    color: #9d9d9d;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
 }

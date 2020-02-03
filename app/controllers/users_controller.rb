@@ -3,10 +3,20 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
+    @book = Book.new
+    @books = Book.all
   end
 
   def users
     @users = User.all
+    @book = Book.new
+    @user = User.find(current_user.id)
+  end
+
+  def books
+    @user = User.find(current_user.id)
+    @book = Book.new
+    @books = Book.all
   end
 
   def edit
@@ -16,7 +26,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_path(@user.id)
+    redirect_to user_path(current_user)
   end
 
   private
