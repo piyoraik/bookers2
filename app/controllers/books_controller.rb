@@ -1,4 +1,18 @@
 class BooksController < ApplicationController
+    before_action :authenticate_user!, except: [:top,:about]
+
+    def top
+    end
+
+    def about
+    end
+
+    def books
+        @user = current_user
+        @book = Book.new
+        @books = Book.all
+    end
+
     def show
         @user = current_user
         @book = Book.new
@@ -15,9 +29,9 @@ class BooksController < ApplicationController
         @books = Book.all
         if @book.save
             flash[:message] = "You have creatad book successfully."
-            redirect_to user_path(current_user)
+            redirect_to book_path(@book)
         else
-            render 'users/books'
+            render :books
         end
     end
 
@@ -29,9 +43,12 @@ class BooksController < ApplicationController
 
     def update
         @book = Book.find(params[:id])
-        @book.update(books_params)
-        flash[:message] = "You have updated book successfully."
-        redirect_to book_path(@book)
+        if @book.update(books_params)
+            flash[:message] = "You have updated book successfully."
+            redirect_to book_path(@book)
+        else
+            render :edit
+        end
     end
 
     private

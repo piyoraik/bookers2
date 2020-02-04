@@ -1,22 +1,15 @@
 class UsersController < ApplicationController
-  #! ログイン済ユーザーのみ、このコントローラーへのアクセスを許可
   before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = Book.all
+    @users = User.find(params[:id])
   end
 
   def users
     @users = User.all
     @book = Book.new
-    @user = User.find(current_user.id)
-  end
-
-  def books
-    @user = User.find(current_user.id)
-    @book = Book.new
-    @books = Book.all
+    @user = current_user
   end
 
   def edit
@@ -25,8 +18,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(current_user)
+    if @user.update(user_params)
+      flash[:message] = "You have updated user successfully."
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
 
   private
