@@ -5,10 +5,8 @@ Rails.application.routes.draw do
   get '/users' => 'users#users', as: 'users'
   get '/books' => 'books#books', as: 'books'
 
-  resources :books, only: [:show, :create, :update, :edit]
+  resources :books, only: [:show, :create, :update, :edit,:destroy]
 
-  resources :users, only: [:show,:edit, :update] do
-    resource :books, only: [:show,:create, :destroy]
-  end
+  resources :users, only: [:show,:edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
